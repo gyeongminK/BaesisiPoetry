@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>나와 어울리는 시집 찾기</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/re01.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+          crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap" rel="stylesheet">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+</head>
+
+<body class="d-flex flex-column h-100">
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <a class="navbar-brand" href="{% url 'Test:main' %}"><img src="/static/img/logo1.png" width="180wv"
+                                                                      height="140hv"></a>
+        </div>
+    </nav>
+</header>
+
+<main role="main" class="flex">
+    <div class="container">
+        <div>
+            <br>
+            <h5 style="font-family: 'Noto Serif KR', serif;"><strong>{{ tester.name }}</strong>님에게 어울리는 시집은<br><br>
+                <strong>{{ book.poet }}</strong> 시인의 <br>
+                <strong>『 {{ book.bookname }} 』</strong> 입니다.</h5>
+        </div>
+        <div class="detail">
+            <br>
+            <p class="con1" style="font-size: medium; font-family: 'Noto Serif KR', serif;">#{{ book.keyword }}</p><br>
+            <p class="con2" style="font-family: 'Noto Serif KR', serif;"><i class="fas fa-quote-left"></i>&nbsp;&nbsp;&nbsp;{{ book.content }}&nbsp;&nbsp;&nbsp;<i
+                    class="fas fa-quote-right"></i></p><br>
+            <p><img src="{{ book.img }}" width="250wv" height="400vh"></p><br><br>
+            <p style="font-size: medium; font-family: 'Noto Serif KR', serif;">{{ book.result| linebreaksbr }}</p>
+        </div>
+
+
+        <br><br><Br>
+
+        <a href="{% url 'Test:re02' tester.id %}" class="atag">
+            <button class="re_btn" style="font-family: 'Noto Serif KR', serif;">시집 엿보기</button>
+        </a>
+        <br> <br>
+        <a href="{{ book.Plink }}" target="_blank" class="atag">
+            <button class="re_btn" style="font-family: 'Noto Serif KR', serif;">구매하러 가기</button>
+        </a>
+        <br> <br>
+        <button id="copy_btn" class="re_btn" style="font-family: 'Noto Serif KR', serif;"
+                onclick="javascript:CopyUrlToClipboard()">테스트 알리기
+        </button>
+        <br><br>
+        <br>
+        &nbsp;<a href="https://instagram.com/bae._.si_si_?igshid=192qktab0t9f4" style="color: black; float: right"
+                 target="_blank">@bae._.si_si_</a>
+        <script>
+            function CopyUrlToClipboard() {
+                var obShareUrl = document.getElementById("ShareUrl");
+                obShareUrl.value = "http://baesisiproject.pythonanywhere.com/";
+                obShareUrl.select();  // 해당 값이 선택되도록 select() 합니다
+                document.execCommand("copy"); // 클립보드에 복사합니다.
+                obShareUrl.blur(); // 선택된 것을 다시 선택안된것으로 바꿈니다
+                alert("테스트 링크가 복사되었습니다!");
+            }
+        </script>
+        <br><br><br>
+    </div>
+</main>
+<nav class="navbar">
+    <div class="logo2" style="padding-top: 0%; padding-left: 15px;">
+        <a class="navbar-brand"><img src="/static/img/logo2.png" width="60wv" height="60hv"></a>
+    </div>
+</nav>
+
+
+<footer class="footer py-5">
+    <div class="container">
+        <a href="https://www.instagram.com/bae._.si_si_/" target="_blank"><span class="text-muted">ⓒ 2020. Baesisi All Rights Reserved.</span></a>
+    </div>
+</footer>
+<input type=text id="ShareUrl">
+
+</body>
+
+</html>
